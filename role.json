@@ -1,0 +1,14 @@
+{
+   "iam":[
+      {
+         "role":[
+            {
+               "RoleName":"EC2FullAccess"
+            },
+            {
+               "RoleName":"EC2fulladmin"
+            }
+         ]
+      }
+   ]
+}
