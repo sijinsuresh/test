@@ -1,0 +1,22 @@
+vars:
+  role: &role https://raw.githubusercontent.com/sijinsuresh/test/master/role.json
+
+policies:
+  - name: iam-roles-with-inline-policies
+    resource: iam-role
+    filters:
+      - type: value
+        key: RoleName
+        value_from:
+          url: *role
+          format: json
+          expr: iam[].role[].RoleName
+        op: in
+        value: "EC2FullAccess"
+    actions:
+      - type: tag
+        key: CostCenter
+        value: barrum
+
+
+
