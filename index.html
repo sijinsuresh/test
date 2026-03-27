@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Deploy</h2>
+  <select id="env">
+    <option>staging</option>
+    <option>production</option>
+  </select>
+  <button onclick="trigger()">Run</button>
+
+  <script>
+    async function trigger() {
+      const env = document.getElementById('env').value;
+      await fetch('https://api.github.com/repos/ORG/REPO/actions/workflows/deploy.yml/dispatches', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer YOUR_TOKEN',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ref: 'main',
+          inputs: { environment: env }
+        })
+      });
+    }
+  </script>
+</body>
+</html>
